@@ -19,42 +19,10 @@ public class EnterLabrinth implements Runnable {
         this.allGuestsEntered = allGuestsEntered;
     }
 
-    /*
-    public int getAllGuestsEntered() {
-        return allGuestsEntered;
-    }
-
-    
-    public int getCount() {
-        return count;
-    }
-
-    public void incrementCount() {
-        count = count + 1;
-        return;
-    }
-    
-
-    public int getCakeCheck(){
-        return isCakeThere;
-    }
-
-    public void eatCake(){
-        isCakeThere = 0;
-        return;
-    }
-
-    public void returnCake(){
-        isCakeThere = 1;
-        return;
-    }
-    */
-
     @Override
     public void run() {
         try{
             reLock.lock();
-            //count = getCount();
             //System.out.println("guestNum(" + guestNum + ") enters cave: count: " + count.get() + " isCakeThere: " + isCakeThere.get() + " guestCheck: " + guestCheck[guestNum]);
 
             if(guestCheck[guestNum] == false && isCakeThere.get() == 1 && guestNum != 0){
@@ -64,16 +32,15 @@ public class EnterLabrinth implements Runnable {
             }
 
             // Guest leader that checks if count is equal to total number of guests
-            if (guestNum == 0){ //&& isCakeThere == 0){
+            if (guestNum == 0){
                 if(guestCheck[guestNum] == false){
                     guestCheck[guestNum] = true;
                     count.getAndIncrement();
                     //System.out.println("guest 0 enters cave first time. count: " + count.get());
-                    //incrementCount();
                 }
                 if(isCakeThere.get() == 0){
-                    //incrementCount();
                     count.getAndIncrement();
+
                     if (numOfGuests == count.get()){
                         //System.out.println("All guests went into cave. count: " + count.get() + ", guestNum: " + guestNum);
                         allGuestsEntered.getAndIncrement();
@@ -83,8 +50,6 @@ public class EnterLabrinth implements Runnable {
                         //System.out.println("Count(" + count.get() + ") guest is in cave and incremented count... not all guests have been in here :(");
                     }
                 }
-                //count = count + 1;
-
             }
         }
         finally{

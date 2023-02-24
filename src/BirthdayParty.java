@@ -7,8 +7,7 @@ import java.util.Scanner;
 public class BirthdayParty {
     public static int numOfGuests = 0;
     public static volatile boolean[] guestCheck;
-    public static Thread[] threads; //Update later??
-    //AtomicInteger count = new AtomicInteger(0);;
+    public static Thread[] threads; 
 
     public static void main(String[] args){
         int guestNum;
@@ -20,8 +19,6 @@ public class BirthdayParty {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter number of guests: ");
-
-        // Read and display number of guests
         numOfGuests = scanner.nextInt();  
 
         threads = new Thread[numOfGuests];
